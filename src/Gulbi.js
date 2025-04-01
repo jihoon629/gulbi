@@ -43,7 +43,7 @@ export default function Gulbi() {
             type="number"
             value={seraItem}
             onChange={(e) => setSeraItem(e.target.value)}
-            placeholder="세라템 가격"
+            placeholder="세라템 가격 (원)"
           />
         </label>
       </div>
@@ -53,7 +53,7 @@ export default function Gulbi() {
             type="number"
             value={auctionGold}
             onChange={(e) => setAuctionGold(e.target.value)}
-            placeholder="경매장 판매가 (만)"
+            placeholder="경매장 판매가 (만 골드)"
           />
         </label>
       </div>
