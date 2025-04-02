@@ -1,0 +1,545 @@
+/* 반응형 CSS 프레임워크 - 모바일 퍼스트 접근법 */
+
+/* 변수 정의 */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #212529;
+  --button-hover: #0056b3;
+  --button-active: #003f7f;
+  --border-color: #e0e0e0;
+  --footer-height-sm: 60px;
+  --footer-height-md: 70px;
+  --footer-height-lg: 80px;
+  --container-padding-sm: 15px;
+  --container-padding-md: 20px;
+  --container-padding-lg: 25px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 기본 리셋 및 글로벌 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  padding-bottom: var(--footer-height-sm);
+  min-height: 100%;
+  line-height: 1.5;
+  position: relative;
+}
+
+/* 레이아웃 컨테이너 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  padding-bottom: var(--footer-height-sm);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem var(--container-padding-sm);
+}
+
+.component-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-bottom: 2rem; /* 푸터와의 간격 확보 */
+}
+
+/* 계산기 컨테이너 */
+.calculator-container {
+  width: 100%;
+  margin: 0 auto 1.5rem;
+  padding: 1.25rem var(--container-padding-sm);
+  background: white;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* 입력 필드 */
+.input-field {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.input-field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
+  color: var(--text-color);
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.input-field input::-webkit-outer-spin-button,
+.input-field input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-field input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.input-field input::placeholder {
+  color: #aaa;
+}
+
+/* 버튼 스타일 */
+.calc-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calc-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.calc-button:active {
+  background-color: var(--button-active);
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* 아이템 버튼 그룹 */
+.item-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.item-button {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+  border: 1px solid #ddd;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.item-button:hover {
+  background-color: #519be9;
+  transform: translateY(-2px);
+}
+
+.item-button:active {
+  background-color: #519be9;
+  transform: translateY(1px);
+}
+
+/* 결과 컨테이너 */
+.result-container {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: var(--border-radius-sm);
+  border-left: 4px solid var(--primary-color);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.result-label {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-right: 0.5rem;
+}
+
+.efficiency-high {
+  color: #28a745;
+}
+
+.efficiency-low {
+  color: #dc3545;
+}
+
+/* 아이템 상세 정보 */
+.item-details {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  margin-top: 1rem;
+  border: 1px solid #eee;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.item-details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-details-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.item-details-item:last-child {
+  border-bottom: none;
+}
+
+/* 로딩 및 에러 메시지 */
+.loading-indicator {
+  text-align: center;
+  padding: 1rem;
+  color: var(--secondary-color);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #f8d7da;
+  border-radius: var(--border-radius-sm);
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* 푸터 */
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: white;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  height: var(--footer-height-sm);
+}
+
+footer button {
+  flex: 1;
+  min-width: 0;
+  max-width: 80px;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: var(--border-radius-sm);
+  margin: 0 0.25rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+footer button:hover {
+  background-color: var(--button-hover);
+}
+
+footer button:active {
+  background-color: var(--button-active);
+  transform: scale(0.95);
+}
+
+/* 태블릿 화면 (481px 이상) */
+@media (min-width: 481px) {
+  body {
+    padding-bottom: var(--footer-height-md);
+  }
+  
+  .app-container {
+    padding-bottom: var(--footer-height-md);
+  }
+  
+  .main-content {
+    padding: 1.5rem var(--container-padding-md);
+  }
+  
+  .component-container {
+    max-width: 90%;
+    padding-bottom: 2.5rem;
+  }
+  
+  .calculator-container {
+    padding: 1.5rem var(--container-padding-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+  }
+  
+  .calculator-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  
+  .input-field {
+    margin-bottom: 1.25rem;
+  }
+  
+  .input-field label {
+    font-size: 1rem;
+  }
+  
+  .input-field input {
+    padding: 0.85rem;
+    font-size: 1rem;
+  }
+  
+  .calc-button {
+    padding: 0.85rem 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .item-button-group {
+    gap: 0.75rem;
+  }
+  
+  .item-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .result-value {
+    font-size: 1.25rem;
+  }
+  
+  .item-details {
+    max-height: 300px;
+  }
+  
+  .item-details-item {
+    font-size: 1rem;
+  }
+  
+  footer {
+    height: var(--footer-height-md);
+    padding: 1rem;
+  }
+  
+  footer button {
+    max-width: 100px;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    margin: 0 0.5rem;
+    text-align: center;
+  }
+}
+
+/* 데스크톱 화면 (769px 이상) */
+@media (min-width: 769px) {
+  body {
+    padding-bottom: var(--footer-height-lg);
+  }
+  
+  .app-container {
+    padding-bottom: var(--footer-height-lg);
+  }
+  
+  .main-content {
+    padding: 2rem var(--container-padding-lg);
+  }
+  
+  .component-container {
+    max-width: 80%;
+    padding-bottom: 3rem;
+  }
+  
+  .calculator-container {
+    max-width: 600px;
+    padding: 2rem var(--container-padding-lg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 2.5rem;
+  }
+  
+  .calculator-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+  }
+  
+  .input-field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-field label {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .input-field input {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-md);
+  }
+  
+  .calc-button {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: var(--border-radius-md);
+    margin-top: 1.25rem;
+  }
+  
+  .item-button-group {
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .item-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius-md);
+  }
+  
+  .result-container {
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+  }
+  
+  .result-value {
+    font-size: 1.5rem;
+    margin: 0.75rem 0;
+  }
+  
+  .item-details {
+    padding: 1.25rem;
+    border-radius: var(--border-radius-md);
+    max-height: 350px;
+  }
+  
+  .item-details-item {
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .loading-indicator,
+  .error-message {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  footer {
+    height: var(--footer-height-lg);
+    padding: 1.25rem;
+  }
+  
+  footer button {
+    max-width: 120px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius-md);
+    margin: 0 0.75rem;
+    text-align: center;
+  }
+}
+
+/* 대형 화면 (1200px 이상) */
+@media (min-width: 1200px) {
+  .component-container {
+    max-width: 70%;
+  }
+  
+  .calculator-container {
+    max-width: 700px;
+  }
+  
+  .calculator-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .item-details {
+    max-height: 400px;
+  }
+  
+  footer button {
+    max-width: 150px;
+    margin: 0 1rem;
+    text-align: center;
+  }
+}
