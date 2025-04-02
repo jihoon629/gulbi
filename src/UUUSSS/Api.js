@@ -1,3 +1,5 @@
+export const APIKey = 'jBxYQP6iLWD8wItyu1TU7MomTvpYLVFx';
+
 export const itemNames = [
   '세리아의 풍성한 선물 Ver.2',
   '다정한 SD 세리아 Ver.2 알',
@@ -14,8 +16,9 @@ export const seraItem = [5900, 5900, 3900, 9800, 39200, 19600];
  * @returns {Promise<object>} - 가공된 데이터 반환
  */
 export async function fetchAuctionData(index) {
-  const apiUrl = `/api/proxy?itemName=${encodeURIComponent(itemNames[index])}`;
-
+  const apiUrl = `https://api.neople.co.kr/df/auction?apikey=${APIKey}&itemName=${encodeURIComponent(
+    itemNames[index]
+  )}&sort=unitPrice:asc`;
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
