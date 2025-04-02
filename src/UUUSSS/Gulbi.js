@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchAuctionData, itemNames } from '../api/Api';
+import { fetchAuctionData, itemNames } from './Api';
 import '../responsive.css'; // 반응형 CSS 파일 import
 
 export default function Gulbi() {
