@@ -15,7 +15,7 @@ export const seraItem = [5900, 5900, 3900, 9800, 39200, 19600];
  * @returns {Promise<object>} - 가공된 데이터 반환
  */
 export async function fetchAuctionData(index) {
-  const apiUrl = `/df/auction?apikey=${APIKey}&itemName=${encodeURIComponent(
+  const apiUrl = `https://api.neople.co.kr/df/auction?apikey=${APIKey}&itemName=${encodeURIComponent(
     itemNames[index]
   )}&sort=unitPrice:asc`;
 
