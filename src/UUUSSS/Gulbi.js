@@ -3,7 +3,7 @@ import { fetchAuctionData, itemNames } from './Api';
 import '../responsive.css'; // 반응형 CSS 파일 import
 
 export default function Gulbi() {
-  const [gulbi, setGulbi] = useState(''); // 굴비 값 (백만 골드당 가격)
+  const [gulbi, setGulbi] = useState(''); // 골드 값 (백만 골드당 가격)
   const [data, setData] = useState(null); // API 데이터
   const [error, setError] = useState(null); // 에러 상태
   const [loading, setLoading] = useState(false); // 로딩 상태
@@ -11,7 +11,7 @@ export default function Gulbi() {
 
   // 효율 계산 함수
   function Ssal(gulbi, seraPrice, unitPrice) {
-    const SsalMukgold = (seraPrice) / gulbi; // 굴비로 환산한 1세라당 골드
+    const SsalMukgold = (seraPrice) / gulbi; // 골드로 환산한 1세라당 골드
     const efficiency = (unitPrice * 0.97) / (SsalMukgold * 0.97); // 효율 계산
     return efficiency * 0.0001; // 퍼센트로 반환
   }
@@ -37,16 +37,16 @@ export default function Gulbi() {
 
   return (
     <div className="calculator-container">
-      <h1 className="calculator-title">굴비 효율 계산기</h1>
+      <h1 className="calculator-title">골드 효율 계산기</h1>
       
       <div className="input-field">
-        <label htmlFor="gulbi-input">굴비값 (백만 골드당 가격)</label>
+        <label htmlFor="gulbi-input">골드값 (백만 골드당 가격)</label>
         <input
           id="gulbi-input"
           type="number"
           value={gulbi}
           onChange={(e) => setGulbi(e.target.value)}
-          placeholder="굴비 값 입력"
+          placeholder="골드 값 입력"
         />
       </div>
       
